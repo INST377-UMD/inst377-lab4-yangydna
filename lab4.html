@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <title>INST377 - Lab 4 - JavaScript</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .section {
+            background-color: #557674;
+            border: 5px solid #3c5352;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center
+        }
+        
+        .alertBox {
+            background-color: #bacdcc;
+        }
+
+        .changeBox {
+            background-color: #bacdcc;
+        }
+
+        .validateBox {
+            background-color: #bacdcc;
+        }
+
+        .addBox {
+            background-color: #bacdcc;
+        }
+    </style>
+</head>
+
+<body id="background" style="background-color: cadetblue">
+    <h1 id="header">INST377 - Lab 4 - JavaScript</h1>
+    
+    <div class="container">
+        <!-- Alert Me Section -->
+        <div class="section">
+            <form name="alertForm" onsubmit=alertMe()>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+                <input type="submit" class="alertBox" value="Alert Me!">
+            </form>
+        </div>
+
+        <!-- Change Color Section -->
+        <div class="section">
+            <button onclick=changeColor() class="changeBox">Change Color</button>
+        </div>
+
+        <!-- Text Tester Section -->
+        <div class="section">
+            <form name="validateForm" onsubmit=validateText()>
+                <label for="textTest">Text Tester:</label>
+                <input type="text" id="textTest">
+                <input type="submit" class="validateBox" value="Validate Text">
+            </form>
+        </div>
+
+        <!-- Add Text Section -->
+        <div class="section">
+            <button onclick=addText() class="addBox">Add Text</button>
+        </div>
+    </div>
+
+    <!-- Javascript Code -->
+    <script type="text/javascript">
+        function alertMe() {
+            console.log('Alert user name:', document.alertForm.name.value)
+            alert('Hi '+ document.alertForm.name.value + '!')
+        }
+
+        function changeColor() {
+            console.log('Attempting to change color of text, current color is: ', document.getElementById("background").style.backgroundColor)
+            if (document.getElementById("background").style.backgroundColor == 'cadetblue') {
+                document.getElementById("background").style.backgroundColor = 'rosybrown';
+            } else {
+                document.getElementById("background").style.backgroundColor = 'cadetblue';
+            }
+            console.log('Successfully changed color of text, new color is: ', document.getElementById("background").style.backgroundColor)
+        }
+
+        function validateText() {
+            console.log('Validate user text:', document.validateForm.textTest.value)
+            var validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (validation.test(document.validateForm.textTest.value)){
+                alert('Invalid Text')
+            }
+        }
+
+        function addText() {
+            console.log('Add text to header', document.getElementById("header").textContent)
+            document.getElementById("header").textContent = document.getElementById("header").textContent + " - Adding Text"
+        }
+    </script>
+</body>
+
+</html>
